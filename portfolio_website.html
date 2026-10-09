@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="th" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phonlert Thepsittha | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f17',
+                        cardBg: 'rgba(18, 24, 38, 0.75)',
+                        cardBorder: 'rgba(255, 255, 255, 0.08)',
+                        accentCyan: '#38bdf8',
+                        accentBlue: '#6366f1',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Kanit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', 'Kanit', sans-serif;
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(18, 24, 38, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(11, 15, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.25);
+        }
+
+        .glow-effect-hover:hover {
+            box-shadow: 0 0 30px -2px rgba(56, 189, 248, 0.4);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        /* Ambient light gradient background */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 min-h-screen relative selection:bg-sky-500 selection:text-white">
+
+    <div class="ambient-glow w-96 h-96 bg-cyan-500/10 top-10 left-10"></div>
+    <div class="ambient-glow w-[500px] h-[500px] bg-indigo-600/10 top-[40%] right-5"></div>
+    <div class="ambient-glow w-80 h-80 bg-sky-600/10 bottom-20 left-1/3"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="flex items-center gap-2 text-xl font-bold tracking-tight hover:opacity-80 transition">
+                <span class="text-sky-400 font-mono">&lt;P/T&gt;</span>
+                <span class="text-white">Phonlert</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-sky-400 transition">About</a>
+                <a href="#skills" class="hover:text-sky-400 transition">Skills</a>
+                <a href="#projects" class="hover:text-sky-400 transition">Projects</a>
+                <a href="#lab" class="hover:text-sky-400 transition">Interactive Lab</a>
+                <a href="#timeline" class="hover:text-sky-400 transition">Timeline</a>
+                <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-darkBg bg-sky-400 hover:bg-sky-300 rounded-full transition shadow-lg shadow-sky-500/20">
+                <i class="fa-regular fa-paper-plane"></i> Get In Touch
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-b border-gray-800 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-gray-300 hover:text-sky-400 py-1">About</a>
+            <a href="#skills" class="block text-gray-300 hover:text-sky-400 py-1">Skills</a>
+            <a href="#projects" class="block text-gray-300 hover:text-sky-400 py-1">Projects</a>
+            <a href="#lab" class="block text-gray-300 hover:text-sky-400 py-1">Interactive Lab</a>
+            <a href="#timeline" class="block text-gray-300 hover:text-sky-400 py-1">Timeline</a>
+            <a href="#contact" class="block text-gray-300 hover:text-sky-400 py-1">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Text Content -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs font-medium text-sky-400 border border-sky-500/30">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                    Available for Creative & Dev Projects
+                </div>
+
+                <div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        พรเลิศ เทพสิทธา
+                    </h1>
+                    <p class="text-2xl sm:text-3xl font-semibold text-sky-400 mt-2">
+                        Phonlert Thepsittha
+                    </p>
+                    <p class="text-lg text-gray-400 mt-2 font-light">
+                        Graphic Designer & Creative Technologist
+                    </p>
+                </div>
+
+                <p class="text-gray-300 text-base leading-relaxed max-w-2xl">
+                    I bridge the gap between design aesthetics and modern software development. Specializing in high-fidelity UI/UX mockups, data visualization, and immersive digital experiences with dark, refined aesthetics.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-medium hover:opacity-90 transition flex items-center gap-2 shadow-lg shadow-sky-500/20">
+                        View Work <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-xl glass-panel text-gray-200 font-medium hover:border-sky-400/50 hover:text-white transition flex items-center gap-2">
+                        Contact Me
+                    </a>
+                </div>
+
+                <!-- Quick Contacts / Social Icons -->
+                <div class="pt-6 border-t border-gray-800 flex items-center gap-6 text-gray-400">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-gray-500">Connect</span>
+                    <a href="mailto:phonlert.creative@example.com" class="hover:text-sky-400 transition text-lg" title="Email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="hover:text-sky-400 transition text-lg" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-sky-400 transition text-lg" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://dribbble.com" target="_blank" class="hover:text-sky-400 transition text-lg" title="Dribbble">
+                        <i class="fa-brands fa-dribbble"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Image Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <!-- Decorative back glow -->
+                    <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-sky-500 to-indigo-600 opacity-30 blur-xl"></div>
+                    
+                    <div class="relative glass-panel p-4 rounded-3xl overflow-hidden shadow-2xl border border-white/10 glow-effect">
+                        <div class="relative w-full h-[460px] rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center">
+                            <!-- Provided User Profile Image -->
+                            <img src="input_file_0.png" 
+                                 onerror="this.src='https://placehold.co/600x800/121826/ffffff?text=Phonlert+T.'" 
+                                 alt="Phonlert Thepsittha - พรเลิศ เทพสิทธา" 
+                                 class="w-full h-full object-cover object-top filter brightness-95 contrast-105 hover:scale-105 transition duration-500">
+                            
+                            <!-- Overlay detail tag -->
+                            <div class="absolute bottom-4 left-4 right-4 glass-panel p-3 rounded-xl border border-white/10 flex justify-between items-center backdrop-blur-md">
+                                <div>
+                                    <p class="text-xs text-gray-400">Based in</p>
+                                    <p class="text-sm font-semibold text-white">Bangkok, Thailand</p>
+                                </div>
+                                <span class="px-2.5 py-1 bg-sky-500/20 text-sky-300 rounded-lg text-xs font-mono border border-sky-500/30">
+                                    Canon R5
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/10 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="h-80 sm:h-96 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                        <img src="input_file_0.png" 
+                             onerror="this.src='https://placehold.co/600x800/121826/ffffff?text=Phonlert+T.'" 
+                             alt="Phonlert Working" 
+                             class="w-full h-full object-cover object-center filter brightness-90">
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400">About Me</h2>
+                    <h3 class="text-3xl font-bold text-white">เกี่ยวกับ พรเลิศ เทพสิทธา</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        ผมเป็น Graphic Designer และ Creative Technologist ที่มีความสนใจในการผสมผสานระหว่างศิลปะการออกแบบและเทคโนโลยีเว็บแอปพลิเคชันอย่างลงตัว ให้ความสำคัญกับ UI/UX design, Dark Aesthetic และ Interactive Experience ที่ใช้งานง่ายและตอบโจทย์ธุรกิจ
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4 text-xs">
+                        <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
+                            <p class="text-sky-400 font-bold text-xl">3+ Years</p>
+                            <p class="text-gray-400 mt-1">Design & Dev Experience</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/60 border border-white/5">
+                            <p class="text-indigo-400 font-bold text-xl">15+ Projects</p>
+                            <p class="text-gray-400 mt-1">Completed Works</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 max-w-7xl mx-auto px-6 relative">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-2">Capabilities</h2>
+            <p class="text-3xl font-bold text-white">Skills & Creative Arsenal</p>
+            <p class="text-gray-400 mt-3 text-sm">Combining modern UI design principles with cutting-edge front-end technologies.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Skill Category 1 -->
+            <div class="glass-panel p-6 rounded-2xl glow-effect-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl mb-4">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">UI / UX Design</h3>
+                <p class="text-xs text-gray-400 mb-4">User research, wireframing, interactive prototyping, and design systems.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Figma / Wireframing</span>
+                            <span class="text-sky-400 font-mono">92%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-sky-400 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Design Systems</span>
+                            <span class="text-sky-400 font-mono">88%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-sky-400 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Category 2 -->
+            <div class="glass-panel p-6 rounded-2xl glow-effect-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl mb-4">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Graphic & Branding</h3>
+                <p class="text-xs text-gray-400 mb-4">Visual identities, typography, layout composition, and digital vector artwork.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Illustrator / Photoshop</span>
+                            <span class="text-indigo-400 font-mono">90%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-indigo-400 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Brand Identity</span>
+                            <span class="text-indigo-400 font-mono">85%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-indigo-400 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Category 3 -->
+            <div class="glass-panel p-6 rounded-2xl glow-effect-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-4">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Front-End Dev</h3>
+                <p class="text-xs text-gray-400 mb-4">Responsive web design, modern HTML5/CSS3, JavaScript frameworks, and Tailwind.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">HTML5 / Tailwind CSS</span>
+                            <span class="text-cyan-400 font-mono">95%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-cyan-400 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">JavaScript / React</span>
+                            <span class="text-cyan-400 font-mono">82%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-cyan-400 rounded-full" style="width: 82%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Category 4 -->
+            <div class="glass-panel p-6 rounded-2xl glow-effect-hover transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 text-xl mb-4">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Data Visualization</h3>
+                <p class="text-xs text-gray-400 mb-4">Interactive charts, dashboard UI design, and visual analytics dashboards.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Dashboard UI</span>
+                            <span class="text-teal-400 font-mono">88%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-teal-400 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-300">Chart & Graph Systems</span>
+                            <span class="text-teal-400 font-mono">80%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-teal-400 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-2">Portfolio Showcase</h2>
+                <p class="text-3xl font-bold text-white">Selected Works & Projects</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2 glass-panel p-1.5 rounded-xl border border-white/10" id="filterContainer">
+                <button data-filter="all" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-sky-500 text-white transition">
+                    All
+                </button>
+                <button data-filter="uiux" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition">
+                    UI/UX
+                </button>
+                <button data-filter="web" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition">
+                    Web Dev
+                </button>
+                <button data-filter="graphic" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg text-gray-400 hover:text-white transition">
+                    Graphic Design
+                </button>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+
+            <!-- Project 1 -->
+            <div class="project-card glass-panel rounded-2xl overflow-hidden glow-effect-hover transition duration-300 group cursor-pointer" 
+                 data-category="uiux"
+                 onclick="openProjectModal('UI/UX Mobile Mockups', 'Mobile Application Design & Prototype', 'Full UX/UI mobile design suite focusing on dark mode usability, sleek glassmorphic components, and intuitive user navigation flow.', 'https://images.unsplash.com/photo-1616469829941-c7200edec809?auto=format&fit=crop&w=800&q=80', ['Figma', 'Prototyping', 'UI Design'])">
+                <div class="relative h-52 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1616469829941-c7200edec809?auto=format&fit=crop&w=800&q=80" alt="UI/UX Mockups" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 px-2.5 py-1 glass-panel text-[10px] font-mono uppercase tracking-wider text-sky-400 rounded-md border border-sky-400/30">
+                        UI/UX
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition">UI/UX Mobile Mockups</h3>
+                    <p class="text-xs text-gray-400 mt-2 line-clamp-2">Complete mobile interface wireframes and high-fidelity interactive screens with dark aesthetics.</p>
+                    <div class="flex items-center gap-2 mt-4 text-xs font-mono text-gray-400">
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">Figma</span>
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">UX Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card glass-panel rounded-2xl overflow-hidden glow-effect-hover transition duration-300 group cursor-pointer" 
+                 data-category="web"
+                 onclick="openProjectModal('Data Visualization Dashboard', 'Analytics & Interactive Charting', 'Comprehensive analytics web app interface featuring sleek data tables, customizable chart widgets, and real-time visual telemetry.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80', ['React', 'Tailwind CSS', 'Chart.js'])">
+                <div class="relative h-52 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Visualization" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 px-2.5 py-1 glass-panel text-[10px] font-mono uppercase tracking-wider text-indigo-400 rounded-md border border-indigo-400/30">
+                        Web Dev
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition">Data Visualization Dashboard</h3>
+                    <p class="text-xs text-gray-400 mt-2 line-clamp-2">Interactive web dashboard for visualizing complex dataset trends with custom dark mode themes.</p>
+                    <div class="flex items-center gap-2 mt-4 text-xs font-mono text-gray-400">
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">Tailwind</span>
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card glass-panel rounded-2xl overflow-hidden glow-effect-hover transition duration-300 group cursor-pointer" 
+                 data-category="graphic"
+                 onclick="openProjectModal('Brand Identity Suite', 'Logo & Visual Branding Concept', 'Sophisticated visual brand identity project including typography guidelines, vector icon sets, and promotional mockups.', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80', ['Illustrator', 'Branding', 'Vector'])">
+                <div class="relative h-52 overflow-hidden bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="Brand Identity" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-3 right-3 px-2.5 py-1 glass-panel text-[10px] font-mono uppercase tracking-wider text-teal-400 rounded-md border border-teal-400/30">
+                        Graphic Design
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition">Brand Identity & Visual System</h3>
+                    <p class="text-xs text-gray-400 mt-2 line-clamp-2">Minimalist corporate identity, logo system, and visual design language for modern tech brands.</p>
+                    <div class="flex items-center gap-2 mt-4 text-xs font-mono text-gray-400">
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">Adobe Illustrator</span>
+                        <span class="px-2 py-0.5 rounded bg-gray-800 text-gray-300">Branding</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="lab" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/10 glow-effect relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-mono border border-indigo-500/20">
+                        <i class="fa-solid fa-flask"></i> Creative Tech Lab
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Interactive Design & Code Canvas</h2>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Experimenting at the intersection of graphic design and web technology. Adjust color palettes and geometry live inside this interactive preview widget.
+                    </p>
+
+                    <!-- Interactive Controls -->
+                    <div class="pt-4 space-y-4">
+                        <div>
+                            <label class="text-xs text-gray-400 uppercase font-mono tracking-wider block mb-2">Accent Glow Color</label>
+                            <div class="flex gap-3" id="colorPicker">
+                                <button onclick="changeCanvasColor('#38bdf8')" class="w-8 h-8 rounded-full bg-sky-400 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                                <button onclick="changeCanvasColor('#6366f1')" class="w-8 h-8 rounded-full bg-indigo-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                                <button onclick="changeCanvasColor('#10b981')" class="w-8 h-8 rounded-full bg-emerald-400 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                                <button onclick="changeCanvasColor('#f43f5e')" class="w-8 h-8 rounded-full bg-rose-500 ring-2 ring-white/20 hover:scale-110 transition"></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-gray-400 uppercase font-mono tracking-wider block mb-2">Particle Speed</label>
+                            <input type="range" id="speedSlider" min="1" max="5" value="2" class="w-full accent-sky-400 bg-gray-800 rounded-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas Preview -->
+                <div class="lg:col-span-7">
+                    <div class="relative w-full h-80 rounded-2xl bg-slate-950 border border-white/10 overflow-hidden shadow-inner flex items-center justify-center">
+                        <canvas id="labCanvas" class="w-full h-full"></canvas>
+                        <div class="absolute bottom-3 left-3 px-3 py-1 glass-panel rounded-lg text-[11px] font-mono text-gray-400 border border-white/10">
+                            Status: <span class="text-emerald-400">Rendering Live</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="py-20 max-w-5xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-2">Journey</h2>
+            <p class="text-3xl font-bold text-white">Experience & Timeline</p>
+            <p class="text-gray-400 mt-2 text-sm">My background in creative technology and graphic design.</p>
+        </div>
+
+        <div class="relative border-l-2 border-gray-800 ml-4 sm:ml-32 space-y-12">
+            
+            <!-- Timeline Item 1 -->
+            <div class="relative pl-8 sm:pl-12 group">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-400 border-4 border-darkBg group-hover:scale-125 transition"></div>
+                
+                <span class="sm:absolute sm:-left-36 sm:top-1 text-xs font-mono text-sky-400 font-semibold block mb-1 sm:mb-0">
+                    Jan 2023 - Present
+                </span>
+                
+                <div class="glass-panel p-6 rounded-2xl border border-white/10">
+                    <h3 class="text-lg font-bold text-white">Creative Technologist & Freelancer</h3>
+                    <p class="text-xs text-sky-400 font-medium mt-0.5">Independent Practice</p>
+                    <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                        Designing UI/UX systems for web & mobile applications, building responsive front-end prototypes, and producing custom vector branding kits for modern digital startups.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="relative pl-8 sm:pl-12 group">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-darkBg group-hover:scale-125 transition"></div>
+                
+                <span class="sm:absolute sm:-left-36 sm:top-1 text-xs font-mono text-indigo-400 font-semibold block mb-1 sm:mb-0">
+                    Jun 2022 - Dec 2022
+                </span>
+                
+                <div class="glass-panel p-6 rounded-2xl border border-white/10">
+                    <h3 class="text-lg font-bold text-white">Graphic Designer Intern</h3>
+                    <p class="text-xs text-indigo-400 font-medium mt-0.5">Digital Media Agency</p>
+                    <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                        Created visual assets for digital marketing campaigns, refined brand identity guidelines, and assisted in UI mockup reviews for client projects.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="relative pl-8 sm:pl-12 group">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-400 border-4 border-darkBg group-hover:scale-125 transition"></div>
+                
+                <span class="sm:absolute sm:-left-36 sm:top-1 text-xs font-mono text-teal-400 font-semibold block mb-1 sm:mb-0">
+                    2019 - 2023
+                </span>
+                
+                <div class="glass-panel p-6 rounded-2xl border border-white/10">
+                    <h3 class="text-lg font-bold text-white">Bachelor's Degree in Digital Arts & Design</h3>
+                    <p class="text-xs text-teal-400 font-medium mt-0.5">University Studies</p>
+                    <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                        Focused on interactive multimedia, web application design, user experience design, and digital photography.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-2">Let's Connect</h2>
+                    <p class="text-3xl font-bold text-white">Start a Project or Collaboration</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Have an idea for a project, need a customized UI/UX mockup, or looking for graphic design expertise? Send a message and let's bring your vision to life.
+                </p>
+
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-center gap-4 p-4 rounded-2xl glass-panel border border-white/10">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-lg">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-gray-400 uppercase font-mono">Email</p>
+                            <p class="text-sm font-semibold text-white">phonlert.thep@example.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-4 rounded-2xl glass-panel border border-white/10">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-gray-400 uppercase font-mono">Location</p>
+                            <p class="text-sm font-semibold text-white">Bangkok, Thailand</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-7">
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 glow-effect">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-xs font-medium text-gray-300 block mb-2">Your Name</label>
+                            <input type="text" required placeholder="พรเลิศ / Name" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 text-sm transition">
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-gray-300 block mb-2">Your Email</label>
+                            <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 text-sm transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-medium text-gray-300 block mb-2">Subject</label>
+                        <input type="text" required placeholder="Project Inquiry / Hiring" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 text-sm transition">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-medium text-gray-300 block mb-2">Message</label>
+                        <textarea rows="4" required placeholder="Tell me about your project or idea..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 text-sm transition resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-semibold hover:opacity-90 transition flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20">
+                        <i class="fa-regular fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 Phonlert Thepsittha (พรเลิศ เทพสิทธา). All rights reserved.</p>
+            <p class="font-mono text-gray-400">Graphic Designer & Creative Technologist</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl border border-white/15 overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <!-- Modal Close Button -->
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-900/80 text-gray-400 hover:text-white flex items-center justify-center transition border border-white/10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="relative h-64 bg-slate-900">
+                <img id="modalImg" src="" alt="Project Preview" class="w-full h-full object-cover">
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-4">
+                <div id="modalTags" class="flex flex-wrap gap-2"></div>
+                <h3 id="modalTitle" class="text-2xl font-bold text-white"></h3>
+                <p id="modalSubtitle" class="text-sm font-medium text-sky-400"></p>
+                <p id="modalDesc" class="text-xs text-gray-300 leading-relaxed"></p>
+
+                <div class="pt-4 flex justify-end">
+                    <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-sky-500 text-white text-xs font-semibold hover:bg-sky-400 transition">
+                        Close Preview
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Filter Projects ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button state
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-sky-500', 'text-white');
+                    b.classList.add('text-gray-400');
+                });
+                btn.classList.add('bg-sky-500', 'text-white');
+                btn.classList.remove('text-gray-400');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Project Modal Functions ---
+        function openProjectModal(title, subtitle, desc, imgSrc, tags) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalSubtitle').innerText = subtitle;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = imgSrc;
+
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-300 text-[11px] font-mono border border-sky-500/20';
+                tagSpan.innerText = tag;
+                tagsContainer.appendChild(tagSpan);
+            });
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // --- Form Submission Feedback ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('ขอบคุณสำหรับข้อความของคุณ! พรเลิศ จะติดต่อกลับโดยเร็วที่สุด\nThank you for your message! Phonlert will get back to you shortly.');
+            document.getElementById('contactForm').reset();
+        }
+
+        // --- Interactive Canvas Animation (Lab Widget) ---
+        const canvas = document.getElementById('labCanvas');
+        const ctx = canvas.getContext('2d');
+        let particleColor = '#38bdf8';
+        let speedMultiplier = 2;
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let particles = [];
+        const numParticles = 40;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 3 + 1;
+                this.vx = (Math.random() - 0.5) * speedMultiplier;
+                this.vy = (Math.random() - 0.5) * speedMultiplier;
+            }
+
+            update() {
+                this.x += this.vx * (speedMultiplier / 2);
+                this.y += this.vy * (speedMultiplier / 2);
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particleColor;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = particleColor;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Connect nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = particleColor;
+                        ctx.globalAlpha = 1 - dist / 100;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                        ctx.globalAlpha = 1.0;
+                    }
+                }
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        function changeCanvasColor(color) {
+            particleColor = color;
+        }
+
+        document.getElementById('speedSlider').addEventListener('input', (e) => {
+            speedMultiplier = parseFloat(e.target.value);
+        });
+    </script>
+</body>
+</html>
